@@ -1,0 +1,9 @@
+GREY TOLERANCE
+——————————————————
+
+Place the screen recording video in this folder.
+Recommended format: .mp4 (H.264)
+
+Then update grey-tolerance.html:
+- Replace the # in the live-link href with your GitHub Pages URL
+- For the video, uncomment Option A or B in the Screen Recording section and update the path/ID

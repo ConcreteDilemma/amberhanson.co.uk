@@ -1,0 +1,14 @@
+MELLOW
+——————————————————
+
+Place the installation video in this folder.
+Recommended format: .mp4 (H.264)
+
+Then update mellow.html:
+- If using a local file, uncomment Option A and update the src path to:
+  Non Static/mellow/your-video.mp4
+
+- If using Vimeo, uncomment Option B and replace VIDEO_ID with your Vimeo video ID
+  (find it in the URL: vimeo.com/VIDEO_ID)
+
+- If using YouTube, uncomment Option C and replace VIDEO_ID

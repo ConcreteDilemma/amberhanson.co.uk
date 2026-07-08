@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Presence / Persistence — Amber Hanson</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root { --blue: #1a3a5c; --red: #8b1a1a; --white: #ffffff; --black: #0a0a0a; }
+  html, body { width: 100%; min-height: 100%; background: var(--white); color: var(--black); font-family: 'Lora', serif; }
+
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: flex-start; padding: 1.5rem 2rem; background: var(--white); }
+  .nav-name { font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--black); text-decoration: none; opacity: 0.9; }
+  .nav-links { display: flex; gap: 2rem; font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; }
+  .nav-links a { color: var(--black); text-decoration: none; opacity: 0.45; transition: opacity 0.2s; }
+  .nav-links a:hover { opacity: 1; }
+  .nav-links a.active { opacity: 1; color: var(--blue); }
+
+  main { max-width: 1200px; margin: 0 auto; padding: 6rem 2rem 5rem; }
+
+  .back { display: inline-block; font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(10,10,10,0.4); text-decoration: none; margin-bottom: 2.5rem; }
+  .back:hover { color: var(--black); }
+
+  .project-header { margin-bottom: 2.5rem; }
+  .project-title { font-size: 1.1rem; font-weight: 400; letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 0.5rem; }
+  .project-meta { font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(10,10,10,0.4); }
+
+  .project-text { font-size: 0.8rem; line-height: 1.9; color: rgba(10,10,10,0.7); max-width: 100%; margin-bottom: 2.5rem; }
+
+  .live-link { display: inline-block; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--blue); text-decoration: none; margin-bottom: 3rem; transition: color 0.2s; }
+  .live-link:hover { color: var(--black); }
+
+  .section-label { font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(10,10,10,0.35); margin-bottom: 1rem; }
+
+  .video-wrap { width: 100%; margin-bottom: 3rem; }
+  .video-wrap video { width: 100%; display: block; }
+
+  .text-block { font-size: 0.8rem; line-height: 2; color: rgba(10,10,10,0.65); max-width: 620px; margin-bottom: 3rem; border-left: 2px solid rgba(10,10,10,0.1); padding-left: 1.25rem; }
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-name" href="index.html">Amber Hanson</a>
+  <div class="nav-links">
+    <a href="index.html">STATIC</a>
+    <a href="dynamic.html" class="active">DYNAMIC</a>
+    <a href="information.html">INFORMATION</a>
+  </div>
+</nav>
+<main>
+  <a class="back" href="dynamic.html">← Dynamic</a>
+
+  <div class="project-header">
+    <h1 class="project-title">Presence / Persistence</h1>
+    <p class="project-meta">web-based, video, text</p>
+  </div>
+
+  <p class="project-text">Presence Persistence is a live camera work that does not display the body directly, but instead records where colour has been. The image is translated into a grid of cells, each sampling the incoming stream for signals of blue and orange. These two chromatic bands, often associated with cinematic contrast and emotional coding, are isolated and accumulated over time. Everything else is allowed to disappear.<br><br>Rather than rendering a continuous photograph, the work constructs a persistence map. Each cell brightens when blue or orange is detected and gradually fades when that signal weakens. The body becomes a temporal disturbance within the grid, leaving traces that linger after movement has ceased.<br><br>Presence in this system is defined by chromatic intensity. The memory of colour is layered cell by cell, producing a shifting field of saturation and decay. As the grid accumulates, the live moment recedes. The viewer encounters an image that is neither fully present nor fully past. It is a sedimented field of chromatic events, a slow inscription of where intensity has occurred. Digital systems define presence through thresholds and repetition, and how memory in computational space is not narrative but incremental.</p>
+
+  <a class="live-link" href="https://concretedilemma.github.io/PresencePersistence/" target="_blank">View Live Version →</a>
+
+  <p class="section-label">Video</p>
+  <div class="video-wrap">
+    <video autoplay muted loop playsinline controls src="Dynamic/presence-persistence/Screen%20Recording%202026-02-16%20at%2018.40.53.mov"></video>
+  </div>
+
+</main>
+</body>
+</html>

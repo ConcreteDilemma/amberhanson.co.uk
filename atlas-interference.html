@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Atlas Interference — Amber Hanson</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root { --blue: #1a3a5c; --red: #8b1a1a; --white: #ffffff; --black: #0a0a0a; }
+  html, body { width: 100%; min-height: 100%; background: var(--white); color: var(--black); font-family: 'Lora', serif; }
+
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: flex-start; padding: 1.5rem 2rem; background: var(--white); }
+  .nav-name { font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--black); text-decoration: none; opacity: 0.9; }
+  .nav-links { display: flex; gap: 2rem; font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; }
+  .nav-links a { color: var(--black); text-decoration: none; opacity: 0.45; transition: opacity 0.2s; }
+  .nav-links a:hover { opacity: 1; }
+  .nav-links a.active { opacity: 1; color: var(--blue); }
+
+  main { max-width: 1200px; margin: 0 auto; padding: 6rem 2rem 5rem; }
+
+  .back { display: inline-block; font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(10,10,10,0.4); text-decoration: none; margin-bottom: 2.5rem; }
+  .back:hover { color: var(--black); }
+
+  .project-header { margin-bottom: 2.5rem; }
+  .project-title { font-size: 1.1rem; font-weight: 400; letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 0.5rem; }
+  .project-meta { font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(10,10,10,0.4); }
+
+  .project-text { font-size: 0.8rem; line-height: 1.9; color: rgba(10,10,10,0.7); max-width: 100%; margin-bottom: 2.5rem; }
+
+  .live-link { display: inline-block; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--blue); text-decoration: none; margin-bottom: 3rem; transition: color 0.2s; }
+  .live-link:hover { color: var(--black); }
+
+  .section-label { font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(10,10,10,0.35); margin-bottom: 1rem; }
+
+  .image-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 4px; margin-bottom: 3rem; }
+  .image-grid img { width: 100%; display: block; object-fit: cover; aspect-ratio: 4/3; }
+
+  .video-wrap { width: 100%; margin-bottom: 3rem; }
+  .video-wrap video { width: 100%; display: block; }
+
+  .iframe-wrap { width: 100%; aspect-ratio: 16/9; margin-bottom: 3rem; }
+  .iframe-wrap iframe { width: 100%; height: 100%; border: none; display: block; }
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-name" href="index.html">Amber Hanson</a>
+  <div class="nav-links">
+    <a href="index.html">STATIC</a>
+    <a href="dynamic.html" class="active">DYNAMIC</a>
+    <a href="information.html">INFORMATION</a>
+  </div>
+</nav>
+<main>
+  <a class="back" href="dynamic.html">← Dynamic</a>
+
+  <div class="project-header">
+    <h1 class="project-title">Atlas Interference</h1>
+    <p class="project-meta">browser-based, generative</p>
+  </div>
+
+  <p class="project-text">Atlas Interference is a generative, browser-based artwork that reconstructs forgotten pigments and vanishing web fragments, combining the material and digital loss of cultural artefacts. Using web scraping and algorithmic processing, informed by scraped pigment data, dynamically shifting in response to both user interaction and external parameters. Drawing from a dataset of historical pigments, the system selects and interpolates colours using weighted randomness or contextual patterns, creating smooth transitions with lerpColor() to mimic the fading and layering of aged pigments. Colours emerge in structured compositions, reflecting historical associations or forming fluid washes that evolve over time. The blending process can also incorporate glitch and decay effects, where digital erosion, triggered by broken hyperlinks or missing data causes pigments to distort, flicker, or degrade. The work collects data on historical colours that have faded from use, pigments once essential but rendered obsolete by technological advancements, environmental regulations or material scarcity. At the same time, it captures remnants of the disappearing internet, obsolete hyperlinks, defunct forums and expired copyright materials in real-time. These fragments, both visual and textual, are minimally composed, forming an evolving digital space where colour and memory decay, reassemble and shift in real time.<br><br>The project resists static archiving, focusing instead on embracing instability and flux. Colours blend algorithmically, their combinations shaped by patterns in the scraped data, while text fragments emerge and dissolve unpredictably, mirroring the erosion of digital memory. Built as a live web-based composition, Atlas Interference functions as both an artwork and a speculative archive, questioning the permanence of cultural records in an era of rapid technological change. The work highlights the fragility of historical preservation, whether in physical materials or online spaces, exploring how loss, absence and computational reconstruction shape our relationship with memory in the digital age.</p>
+
+  <a class="live-link" href="https://concretedilemma.github.io/ICS/" target="_blank">View Live Version →</a>
+
+  <p class="section-label">Live Work</p>
+  <div class="iframe-wrap">
+    <iframe src="https://concretedilemma.github.io/ICS/" title="Atlas Interference" allowfullscreen></iframe>
+  </div>
+
+</main>
+</body>
+</html>

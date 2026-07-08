@@ -1,0 +1,9 @@
+PANOPTIC POLLUTION
+——————————————————
+
+Place installation images in this folder.
+Supported formats: .jpg, .png, .webp
+
+Then update panoptic-pollution.html:
+- Add <img src="Non Static/panoptic-pollution/your-image.jpg" alt=""> inside the .image-grid div
+- Replace the # in the live-link href with your GitHub Pages URL

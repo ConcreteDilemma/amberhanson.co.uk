@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Panoptic Pollution — Amber Hanson</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root { --blue: #1a3a5c; --red: #8b1a1a; --white: #ffffff; --black: #0a0a0a; }
+  html, body { width: 100%; min-height: 100%; background: var(--white); color: var(--black); font-family: 'Lora', serif; }
+
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: flex-start; padding: 1.5rem 2rem; background: var(--white); }
+  .nav-name { font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--black); text-decoration: none; opacity: 0.9; }
+  .nav-links { display: flex; gap: 2rem; font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; }
+  .nav-links a { color: var(--black); text-decoration: none; opacity: 0.45; transition: opacity 0.2s; }
+  .nav-links a:hover { opacity: 1; }
+  .nav-links a.active { opacity: 1; color: var(--blue); }
+
+  main { max-width: 1200px; margin: 0 auto; padding: 6rem 2rem 5rem; }
+
+  .back { display: inline-block; font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(10,10,10,0.4); text-decoration: none; margin-bottom: 2.5rem; }
+  .back:hover { color: var(--black); }
+
+  .project-header { margin-bottom: 2.5rem; }
+  .project-title { font-size: 1.1rem; font-weight: 400; letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 0.5rem; }
+  .project-meta { font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(10,10,10,0.4); }
+  .project-meta span { color: var(--red); margin-right: 1rem; }
+
+  .project-text { font-size: 0.8rem; line-height: 1.9; color: rgba(10,10,10,0.7); max-width: 100%; margin-bottom: 2.5rem; }
+
+  .live-link { display: inline-block; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--blue); text-decoration: none; margin-bottom: 3rem; transition: color 0.2s; }
+  .live-link:hover { color: var(--black); }
+
+  .image-layout { display: flex; flex-direction: column; gap: 4px; margin-bottom: 3rem; }
+  .row-large img { width: 100%; display: block; object-fit: cover; aspect-ratio: 16/9; min-height: 500px; }
+  .row-small { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; }
+  .row-small img { width: 100%; display: block; object-fit: cover; aspect-ratio: 4/3; min-height: 320px; }
+
+  .section-label { font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(10,10,10,0.35); margin-bottom: 1rem; }
+
+  video { width: 100%; display: block; margin-bottom: 3rem; }
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-name" href="index.html">Amber Hanson</a>
+  <div class="nav-links">
+    <a href="index.html">STATIC</a>
+    <a href="dynamic.html" class="active">DYNAMIC</a>
+    <a href="information.html">INFORMATION</a>
+  </div>
+</nav>
+<main>
+  <a class="back" href="dynamic.html">← Dynamic</a>
+
+  <div class="project-header">
+    <h1 class="project-title">Panoptic Pollution</h1>
+    <p class="project-meta">installation, web-based</p>
+  </div>
+
+  <p class="project-text">Panoptic Pollution is a dual-projection installation. One screen displays a live, unfiltered public CCTV feed of a public space, observational, and silent. Next to it, a second screen visualising the gaze of viewers watching the CCTV in real time: a slowly forming heat map rendered in a coloured spectrum of glyphs. The more sustained or repeated the gaze in a given area, the larger the glyph grows; a collective drawing of attention. Areas that are ignored remain black while areas over-observed become saturated and unstable. When a viewer shifts focus from the CCTV feed to the projection of their own gaze traces, the system introduces minor visual disruption, a break in the line drawing, a feedback loop critiquing digital narcissism and self-surveillance. Over time, the screen reveals zones of obsession, neglect, and distortion.</p>
+
+  <a class="live-link" href="https://concretedilemma.github.io/panoptic-pollution-web/" target="_blank">View Live Version →</a>
+
+  <p class="section-label">Installation</p>
+  <div class="image-layout">
+    <div class="row-large">
+      <img src="Dynamic/panoptic-pollution/AH11.png" alt="Panoptic Pollution">
+    </div>
+    <div class="row-large">
+      <img src="Dynamic/panoptic-pollution/Ah10.png" alt="Panoptic Pollution">
+    </div>
+    <div class="row-small">
+      <img src="Dynamic/panoptic-pollution/unnamed-1.png" alt="Panoptic Pollution">
+      <img src="Dynamic/panoptic-pollution/unnamed-3.png" alt="Panoptic Pollution">
+    </div>
+  </div>
+
+  <p class="section-label">Video</p>
+  <div class="video-wrap">
+    <video controls src="Dynamic/panoptic-pollution/glyph%201.mov"></video>
+  </div>
+
+</main>
+</body>
+</html>

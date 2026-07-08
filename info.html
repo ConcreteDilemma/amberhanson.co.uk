@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Info — Amber Hanson</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --blue: #1a3a5c;
+    --red: #8b1a1a;
+    --white: #ffffff;
+    --black: #0a0a0a;
+  }
+
+  html, body {
+    width: 100%;
+    min-height: 100%;
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Space Mono', monospace;
+  }
+
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 1.5rem 2rem;
+  }
+
+  .nav-name {
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--white);
+    text-decoration: none;
+    opacity: 0.9;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: lowercase;
+  }
+
+  .nav-links a {
+    color: var(--white);
+    text-decoration: none;
+    opacity: 0.6;
+    transition: opacity 0.2s;
+  }
+
+  .nav-links a:hover { opacity: 1; }
+  .nav-links a.active { opacity: 1; color: var(--blue); }
+
+  main {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 7rem 2rem 6rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 4rem;
+  }
+
+  @media (max-width: 600px) {
+    main { grid-template-columns: 1fr; }
+  }
+
+  .bio-col { grid-column: 1 / -1; margin-bottom: 3.5rem; }
+
+  .bio-text {
+    font-size: 0.85rem;
+    line-height: 2;
+    color: rgba(240, 237, 232, 0.75);
+    max-width: 600px;
+  }
+
+  .bio-contact {
+    margin-top: 1.5rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.04em;
+  }
+
+  .bio-contact a {
+    color: var(--blue);
+    text-decoration: none;
+    border-bottom: 1px solid var(--blue);
+    padding-bottom: 1px;
+  }
+
+  .bio-contact a:hover { color: var(--white); border-color: var(--white); }
+
+  section { margin-bottom: 3rem; }
+
+  .section-label {
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 1.5rem;
+  }
+
+  .cv-item {
+    margin-bottom: 1.25rem;
+  }
+
+  .cv-item-title {
+    font-size: 0.78rem;
+    line-height: 1.6;
+    color: var(--white);
+  }
+
+  .cv-item-meta {
+    font-size: 0.65rem;
+    letter-spacing: 0.04em;
+    color: rgba(240, 237, 232, 0.4);
+    margin-top: 0.2rem;
+    line-height: 1.5;
+  }
+
+  .cv-item a {
+    color: var(--blue);
+    text-decoration: none;
+  }
+
+  .cv-item a:hover { color: var(--white); }
+
+  hr.section-rule {
+    border: none;
+    border-top: 1px solid rgba(240, 237, 232, 0.08);
+    margin-bottom: 3rem;
+    grid-column: 1 / -1;
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-name" href="index.html">Amber Hanson</a>
+  <div class="nav-links">
+    <a href="index.html">work</a>
+    <a href="web.html">web</a>
+    <a href="info.html" class="active">info</a>
+  </div>
+</nav>
+
+<main>
+
+  <div class="bio-col">
+    <p class="bio-text">Amber Hanson is a Cambridge-based artist working across speculative media, digital systems, and experimental image-making. Her practice spans moving image, web-based installation, and chemical painting, exploring how technologies reshape perception, authorship, and memory. Drawing from post-internet aesthetics, archival logic, and open-world systems, she builds works that remain evolving living documents responsive to interaction, environment, or time.</p>
+    <p class="bio-contact" style="margin-top:1.5rem;">
+      <a href="mailto:getamberhanson@icloud.com">getamberhanson@icloud.com</a>
+    </p>
+  </div>
+
+  <hr class="section-rule">
+
+  <section>
+    <p class="section-label">Publications</p>
+
+    <div class="cv-item">
+      <p class="cv-item-title">Post-Internet as Open World: Distributed Spectatorship Beyond the Screen</p>
+      <p class="cv-item-meta">Selected for Besides the Screen Ningbo 2026, University of Nottingham Ningbo China</p>
+    </div>
+
+    <div class="cv-item">
+      <p class="cv-item-title">Decommissioning the Decisive Moment: Duration and Violence in Computational Image Culture</p>
+      <p class="cv-item-meta">Under peer review. <a href="https://zenodo.org/records/18909631" target="_blank">Available via Zenodo →</a></p>
+    </div>
+
+    <div class="cv-item">
+      <p class="cv-item-title">Das Neue Normalität</p>
+      <p class="cv-item-meta">Vienna School of Fine Arts — contributed artwork and panel discussion</p>
+    </div>
+
+    <div class="cv-item">
+      <p class="cv-item-title">CURSOR Mag, Issue 7 — In the Archives</p>
+      <p class="cv-item-meta">Editor. Print and web-based interactive reading</p>
+    </div>
+
+    <div class="cv-item">
+      <p class="cv-item-title">Visual Literacy Framework for Large Language Models</p>
+      <p class="cv-item-meta">Dissertation. Homerton College, University of Cambridge</p>
+    </div>
+
+    <div class="cv-item">
+      <p class="cv-item-title">Exploring the Implications of Obscured Original Sound Sources on the Authenticity of Electroacoustic Music</p>
+      <p class="cv-item-meta">Paper. Knowledge Commons, Central Saint Martins</p>
+    </div>
+
+    <div class="cv-item">
+      <p class="cv-item-title">Peer Reviewer</p>
+      <p class="cv-item-meta">JAWS Journal; First Monday (Journal of Internet Studies)</p>
+    </div>
+  </section>
+
+  <section>
+    <p class="section-label">Selected exhibitions</p>
+
+    <div class="cv-item">
+      <p class="cv-item-title">The Float Element</p>
+      <p class="cv-item-meta">Solo show. Aura Space, Braga, Portugal</p>
+    </div>
+
+    <div class="cv-item">
+      <p class="cv-item-title">Emergent Flora</p>
+      <p class="cv-item-meta">Interdisciplinary exhibition. Cambridge Digital Humanities</p>
+    </div>
+
+    <div class="cv-item">
+      <p class="cv-item-title">John Hughes Memorial Exhibition</p>
+      <p class="cv-item-meta">Jesus College, Cambridge</p>
+    </div>
+
+    <div class="cv-item">
+      <p class="cv-item-title">Queens Arts Festival</p>
+      <p class="cv-item-meta">Queens College Art Gallery, Cambridge</p>
+    </div>
+
+    <div class="cv-item">
+      <p class="cv-item-title">Debating Language</p>
+      <p class="cv-item-meta">The Cambridge Union</p>
+    </div>
+
+    <div class="cv-item">
+      <p class="cv-item-title">Whitechapel Gallery Art Night</p>
+      <p class="cv-item-meta">Garden of Virtual Utopias, Production</p>
+    </div>
+
+    <div class="cv-item">
+      <p class="cv-item-title">Weather Pt. 1 &amp; 2</p>
+      <p class="cv-item-meta">AquaBit Gallery; Team Titanic Gallery, Berlin</p>
+    </div>
+
+    <div class="cv-item">
+      <p class="cv-item-title">Source Display: Street Photography / Collage</p>
+      <p class="cv-item-meta">Tate Britain, London</p>
+    </div>
+
+    <div class="cv-item">
+      <p class="cv-item-title">Perez Art Museum</p>
+      <p class="cv-item-meta">Miami, Florida</p>
+    </div>
+
+    <div class="cv-item">
+      <p class="cv-item-title">Whitney Museum of Art</p>
+      <p class="cv-item-meta">New York (The SP Tour)</p>
+    </div>
+
+    <div class="cv-item">
+      <p class="cv-item-title">LACMA</p>
+      <p class="cv-item-meta">Los Angeles (The SP Tour)</p>
+    </div>
+
+    <div class="cv-item">
+      <p class="cv-item-title">New Museum Ideas City StreetFest</p>
+      <p class="cv-item-meta">New York (The SP Tour)</p>
+    </div>
+
+    <div class="cv-item">
+      <p class="cv-item-title">South London Gallery SLAM Art Tour</p>
+      <p class="cv-item-meta">London</p>
+    </div>
+
+    <div class="cv-item">
+      <p class="cv-item-title">MiniClicks — Another Way of Looking</p>
+      <p class="cv-item-meta">Brighton Photo Fringe Biennial</p>
+    </div>
+  </section>
+
+  <hr class="section-rule">
+
+  <section>
+    <p class="section-label">Education</p>
+
+    <div class="cv-item">
+      <p class="cv-item-title">PGCertEd</p>
+      <p class="cv-item-meta">Homerton College, University of Cambridge</p>
+    </div>
+
+    <div class="cv-item">
+      <p class="cv-item-title">MA Arts &amp; Learning</p>
+      <p class="cv-item-meta">Goldsmiths, University of London</p>
+    </div>
+
+    <div class="cv-item">
+      <p class="cv-item-title">BA (Hons) Fine Art</p>
+      <p class="cv-item-meta">Central Saint Martins, UAL</p>
+    </div>
+  </section>
+
+  <section>
+    <p class="section-label">Awards</p>
+
+    <div class="cv-item">
+      <p class="cv-item-title">Deutsche Bank &amp; Common Purpose Photography Award</p>
+    </div>
+
+    <div class="cv-item">
+      <p class="cv-item-title">Vogue Italia — Art &amp; Commerce Licence</p>
+      <p class="cv-item-meta">Photographic essays (concluded)</p>
+    </div>
+  </section>
+
+</main>
+
+</body>
+</html>

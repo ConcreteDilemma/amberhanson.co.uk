@@ -1,0 +1,11 @@
+PRESENCE / PERSISTENCE
+——————————————————
+
+This folder holds:
+1. Video of the screenplay — place .mp4 file here
+2. Any additional images
+
+Then update presence-persistence.html:
+- Replace the # in the live-link href with your GitHub Pages URL
+- For the video, uncomment Option A or B in the Video section and update the path/ID
+- Add any screenplay text inside the .text-block div

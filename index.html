@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Amber Hanson</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --blue: #1a3a5c;
+    --red: #8b1a1a;
+    --white: #ffffff;
+    --black: #0a0a0a;
+  }
+
+  html, body {
+    width: 100%;
+    height: 100%;
+    background: var(--white);
+    color: var(--black);
+    font-family: 'Lora', serif;
+    overflow: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 1.5rem 2rem;
+    mix-blend-mode: normal;
+  }
+
+  .nav-name {
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--black);
+    text-decoration: none;
+    opacity: 0.9;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .nav-links a {
+    color: var(--black);
+    text-decoration: none;
+    opacity: 0.45;
+    transition: opacity 0.2s;
+  }
+
+  .nav-links a:hover { opacity: 1; }
+  .nav-links a.active { opacity: 1; color: var(--blue); }
+
+  /* PAGE LAYOUT */
+  body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    overflow: hidden;
+  }
+
+  /* SLIDESHOW FRAME */
+  .slideshow-wrap {
+    width: 70%;
+    aspect-ratio: 16 / 10;
+    position: relative;
+    border: 1px solid rgba(10, 10, 10, 0.12);
+  }
+
+  .slideshow {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .slide.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* COUNTER */
+  .counter {
+    position: fixed;
+    bottom: 1.75rem;
+    right: 2rem;
+    z-index: 100;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    color: var(--black);
+    opacity: 0.4;
+  }
+
+  /* PAUSE INDICATOR */
+  .pause-indicator {
+    position: fixed;
+    bottom: 1.75rem;
+    left: 2rem;
+    z-index: 100;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    color: var(--red);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .pause-indicator.visible { opacity: 1; }
+
+  /* PROGRESS BAR — runs along bottom of frame */
+  .progress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 1px;
+    background: var(--blue);
+    z-index: 100;
+    width: 0%;
+    transition: width linear;
+  }
+
+  /* Click areas */
+  .click-prev, .click-next {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    z-index: 50;
+    width: 30%;
+    cursor: pointer;
+  }
+
+  .click-prev { left: 0; }
+  .click-next { right: 0; }
+
+  /* Arrow buttons */
+  .arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 60;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    color: rgba(10,10,10,0.3);
+    padding: 0.75rem 1rem;
+    line-height: 1;
+    transition: color 0.2s;
+    pointer-events: auto;
+  }
+
+  .arrow:hover { color: var(--black); }
+  .arrow-left { left: 0.25rem; }
+  .arrow-right { right: 0.25rem; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-name" href="index.html">Amber Hanson</a>
+  <div class="nav-links">
+    <a href="index.html" class="active">static</a>
+    <a href="dynamic.html">dynamic</a>
+    <a href="information.html">information</a>
+  </div>
+</nav>
+
+<div class="slideshow-wrap">
+  <div class="slideshow" id="slideshow"></div>
+  <div class="progress" id="progress"></div>
+  <div class="click-prev" id="clickPrev"></div>
+  <div class="click-next" id="clickNext"></div>
+  <button class="arrow arrow-left" id="arrowLeft">&#8592;</button>
+  <button class="arrow arrow-right" id="arrowRight">&#8594;</button>
+</div>
+
+<div class="counter" id="counter">01 / 09</div>
+<div class="pause-indicator" id="pauseIndicator">paused</div>
+
+<script>
+  const INTERVAL = 4000;
+
+  const images = [
+    'Static/unnamed.png',
+    'Static/unnamed-1.png',
+    'Static/unnamed-3.png',
+    'Static/unnamed-4.png',
+    'Static/unnamed-5.png',
+    'Static/unnamed-6.png',
+    'Static/unnamed-7.png',
+    'Static/unnamed-8.png',
+    'Static/unnamed-9.png',
+  ];
+
+  let current = 0;
+  let paused = false;
+  let timer = null;
+  let progressTimer = null;
+
+  const slideshow = document.getElementById('slideshow');
+  const counter = document.getElementById('counter');
+  const pauseIndicator = document.getElementById('pauseIndicator');
+  const progress = document.getElementById('progress');
+
+  // Build slides
+  images.forEach((src, i) => {
+    const div = document.createElement('div');
+    div.className = 'slide' + (i === 0 ? ' active' : '');
+    const img = document.createElement('img');
+    img.src = src;
+    img.alt = '';
+    img.loading = i < 3 ? 'eager' : 'lazy';
+    div.appendChild(img);
+    slideshow.appendChild(div);
+  });
+
+  const slides = document.querySelectorAll('.slide');
+
+  function pad(n) { return String(n + 1).padStart(2, '0'); }
+
+  function goTo(n) {
+    slides[current].classList.remove('active');
+    current = (n + images.length) % images.length;
+    slides[current].classList.add('active');
+    counter.textContent = pad(current) + ' / ' + pad(images.length - 1);
+    startProgress();
+  }
+
+  function next() { goTo(current + 1); }
+  function prev() { goTo(current - 1); }
+
+  function startProgress() {
+    progress.style.transition = 'none';
+    progress.style.width = '0%';
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        progress.style.transition = `width ${INTERVAL}ms linear`;
+        progress.style.width = '100%';
+      });
+    });
+  }
+
+  function startTimer() {
+    clearInterval(timer);
+    timer = setInterval(() => {
+      if (!paused) next();
+    }, INTERVAL);
+  }
+
+  function togglePause() {
+    paused = !paused;
+    pauseIndicator.classList.toggle('visible', paused);
+    if (paused) {
+      progress.style.transition = 'none';
+    } else {
+      startProgress();
+    }
+  }
+
+  // Click left/right to navigate
+  document.getElementById('clickPrev').addEventListener('click', () => {
+    prev();
+    if (!paused) startTimer();
+  });
+
+  document.getElementById('clickNext').addEventListener('click', () => {
+    next();
+    if (!paused) startTimer();
+  });
+
+  // Arrow buttons
+  document.getElementById('arrowLeft').addEventListener('click', e => {
+    e.stopPropagation();
+    prev();
+    if (!paused) startTimer();
+  });
+
+  document.getElementById('arrowRight').addEventListener('click', e => {
+    e.stopPropagation();
+    next();
+    if (!paused) startTimer();
+  });
+
+  // Space or click centre to pause
+  document.addEventListener('keydown', e => {
+    if (e.code === 'Space') { e.preventDefault(); togglePause(); }
+    if (e.code === 'ArrowRight') { next(); if (!paused) startTimer(); }
+    if (e.code === 'ArrowLeft') { prev(); if (!paused) startTimer(); }
+  });
+
+  // Start
+  startProgress();
+  startTimer();
+</script>
+</body>
+</html>

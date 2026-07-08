@@ -1,0 +1,9 @@
+YOLK
+——————————————————
+
+Place installation images in this folder.
+Supported formats: .jpg, .png, .webp
+
+Then update yolk.html:
+- Add <img src="Non Static/yolk/your-image.jpg" alt=""> inside the .image-grid div
+- Add as many images as needed — they will arrange in a 2-column grid automatically

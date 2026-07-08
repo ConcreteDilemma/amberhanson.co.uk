@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Information — Amber Hanson</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --blue: #1a3a5c;
+    --red: #8b1a1a;
+    --white: #ffffff;
+    --black: #0a0a0a;
+  }
+
+  html, body {
+    width: 100%;
+    min-height: 100%;
+    background: var(--white);
+    color: var(--black);
+    font-family: 'Lora', serif;
+  }
+
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 1.5rem 2rem;
+    background: var(--white);
+  }
+
+  .nav-name {
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--black);
+    text-decoration: none;
+    opacity: 0.9;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .nav-links a {
+    color: var(--black);
+    text-decoration: none;
+    opacity: 0.45;
+    transition: opacity 0.2s;
+  }
+
+  .nav-links a:hover { opacity: 1; }
+  .nav-links a.active { opacity: 1; color: var(--blue); }
+
+  main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 7rem 2rem 6rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .col-left {
+    position: sticky;
+    top: 7rem;
+  }
+
+  .col-right {}
+
+  .contact {
+    font-size: 0.8rem;
+    margin-bottom: 2rem;
+  }
+
+  .contact a {
+    color: var(--black);
+    text-decoration: none;
+    border-bottom: 1px solid var(--black);
+    padding-bottom: 1px;
+  }
+
+  .contact a:hover { color: var(--blue); border-color: var(--blue); }
+
+  .bio {
+    font-size: 0.8rem;
+    line-height: 1.9;
+    color: rgba(10,10,10,0.75);
+  }
+
+  section {
+    margin-bottom: 3rem;
+  }
+
+  .section-heading {
+    font-size: 0.65rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--black);
+    margin-bottom: 1.75rem;
+  }
+
+  .pub-item {
+    margin-bottom: 1.75rem;
+  }
+
+  .pub-title {
+    font-size: 0.8rem;
+    font-weight: 700;
+    line-height: 1.5;
+    color: var(--black);
+    margin-bottom: 0.35rem;
+  }
+
+  .pub-desc {
+    font-size: 0.75rem;
+    line-height: 1.8;
+    color: rgba(10,10,10,0.6);
+  }
+
+  .pub-desc a {
+    color: var(--blue);
+    text-decoration: none;
+    border-bottom: 1px solid var(--blue);
+    padding-bottom: 1px;
+  }
+
+  .exhibitions-list {
+    font-size: 0.78rem;
+    line-height: 2.1;
+    color: rgba(10,10,10,0.75);
+  }
+
+  .exhibitions-list p {
+    margin-bottom: 0.1rem;
+  }
+
+  .edu-item {
+    font-size: 0.78rem;
+    line-height: 2.1;
+    color: rgba(10,10,10,0.75);
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-name" href="index.html">Amber Hanson</a>
+  <div class="nav-links">
+    <a href="index.html">static</a>
+    <a href="dynamic.html">dynamic</a>
+    <a href="information.html" class="active">information</a>
+  </div>
+</nav>
+
+<main>
+
+  <div class="col-left">
+    <p class="contact"><a href="mailto:getamberhanson@icloud.com">getamberhanson@icloud.com</a></p>
+    <p class="bio">Amber Hanson is a Cambridge-based artist working across speculative media, digital systems, and experimental image-making. Her practice spans moving image, web-based installation, and chemical painting, exploring how technologies reshape perception, authorship, and memory. Drawing from post-internet aesthetics, archival logic, and open-world systems, she builds works that remain evolving living documents responsive to interaction, environment, or time.</p>
+  </div>
+
+  <div class="col-right">
+
+  <section>
+    <p class="section-heading">Publications &amp; Editorial</p>
+
+    <div class="pub-item">
+      <p class="pub-title">Post-Internet as Open World: Distributed Spectatorship Beyond the Screen</p>
+      <p class="pub-desc">Research paper exploring distributed spectatorship and open-world visual environments in post-internet culture. Selected for Besides the Screen Ningbo 2026, University of Nottingham Ningbo China.</p>
+    </div>
+
+    <div class="pub-item">
+      <p class="pub-title">Decommissioning the Decisive Moment: Duration and Violence in Computational Image Culture</p>
+      <p class="pub-desc">Paper examining how predictive and infrastructural systems challenge the notion of discrete moments in image production. Currently under peer review. <a href="https://zenodo.org/records/18909631" target="_blank">Available via Zenodo →</a></p>
+    </div>
+
+    <div class="pub-item">
+      <p class="pub-title">Das Neue Normalität — Vienna School of Fine Arts</p>
+      <p class="pub-desc">Contributed artwork and panel discussion examining artistic practice during pandemic conditions, focusing on the transformation of studio space and creative production within constrained and digital environments.</p>
+    </div>
+
+    <div class="pub-item">
+      <p class="pub-title">Editor: CURSOR Mag, Issue 7 — In the Archives</p>
+      <p class="pub-desc">In the Archives centres around the question of classification, and on the potential of counter-archiving to challenge dominant narratives and power structures. This issue exists in print form and web-based interactive reading.</p>
+    </div>
+
+    <div class="pub-item">
+      <p class="pub-title">Visual Literacy Framework for Large Language Models</p>
+      <p class="pub-desc">Research project developing a framework for extending text-based AI systems toward interpreting and generating visual meaning. Explores representation, modality translation, and the limits of machine understanding within cultural and educational contexts. Homerton College, University of Cambridge.</p>
+    </div>
+
+    <div class="pub-item">
+      <p class="pub-title">Exploring the Implications of Obscured Original Sound Sources on the Authenticity of Electroacoustic Music</p>
+      <p class="pub-desc">Paper — Dissertation. Published: Knowledge Commons. Central Saint Martins College of Art &amp; Design.</p>
+    </div>
+
+    <div class="pub-item">
+      <p class="pub-title">Peer Reviewer — JAWS Journal</p>
+      <p class="pub-desc">Reviewing academic submissions related to art, technology, and practice-based research.</p>
+    </div>
+
+    <div class="pub-item">
+      <p class="pub-title">Peer Reviewer — First Monday (Journal of Internet Studies)</p>
+      <p class="pub-desc">Reviewing research on internet culture, digital systems, and computational media.</p>
+    </div>
+  </section>
+
+  <section>
+    <p class="section-heading">Selected Exhibitions</p>
+
+    <div class="exhibitions-list">
+      <p>The Float Element, Solo Show. Aura Space, Braga. Portugal.</p>
+      <p>Emergent Flora, Interdisciplinary Exhibition. Cambridge Digital Humanities.</p>
+      <p>John Hughes Memorial Exhibition, Jesus College, Cambridge University.</p>
+      <p>Queens Arts Festival, Queens College Art Gallery, Cambridge.</p>
+      <p>Debating Language, The Cambridge Union.</p>
+      <p>The Photocopy Club, 10 years, The Courtyard Theatre, London.</p>
+      <p>St. Pete, Intermezzo, Florida.</p>
+      <p>Perez Art Museum, Miami, Florida.</p>
+      <p>Tampa Indie, Tampa, Florida.</p>
+      <p>Whitechapel Gallery Art Night — Garden of Virtual Utopias, Production.</p>
+      <p>South London Gallery SLAM Art Tour.</p>
+      <p>Weather Pt. 2, Team Titanic Gallery, Berlin.</p>
+      <p>Weather Pt. 1, AquaBit Gallery, Berlin.</p>
+      <p>Extended Play, Collaborative Performance. The Foundry, London.</p>
+      <p>Source Display: Street Photography. Tate Britain, London.</p>
+      <p>Source Display: Collage. Tate Britain, London.</p>
+      <p>MiniClicks — Another Way of Looking. Brighton Photo Fringe Biennial.</p>
+      <p>Whitney Museum of Art, New York. (The SP Tour)</p>
+      <p>Fort Smith Regional Art Museum, AR. (The SP Tour)</p>
+      <p>LACMA, Los Angeles. (The SP Tour)</p>
+      <p>NoBo Art District, North Boulder, CO. (The SP Tour)</p>
+      <p>Cedar Rapids Museum of Art, IA. (The SP Tour)</p>
+      <p>Millennium Park, Chicago. (The SP Tour)</p>
+      <p>Ideas City StreetFest, New Museum, New York. (The SP Tour)</p>
+      <p>Brooklyn Art Library, New York. (The SP Tour)</p>
+      <p>Seattle Art Museum / Olympic Park. (The SP Tour)</p>
+      <p>The Yard San Francisco, CA. (The SP Tour)</p>
+      <p>First Friday Art Murmur Oakland, CA. (The SP Tour)</p>
+      <p>Ponce City Market, Atlanta. (The SP Tour)</p>
+      <p>MDC Museum of Art + Design, Miami. (The SP Tour)</p>
+      <p>Umlauf Sculpture Garden &amp; Museum, Austin, TX. (The SP Tour)</p>
+      <p>Chicago Loop Alliance, Chicago. (The SP Tour)</p>
+      <p>The Distillery Historic District, Toronto. (The SP Tour)</p>
+      <p>The Photocopy Club × Michael Jang. Book &amp; Job Gallery, San Francisco.</p>
+      <p>Franklin Arts Center, Minnesota.</p>
+      <p>IsThisIt, curated by GGeorgeArts.</p>
+      <p>ThirtyWorks, curated by 12ø &amp; Set The Controls.</p>
+      <p>The Listening Booth, curated by GGeorge Arts.</p>
+      <p>The Printhouse Gallery, London.</p>
+    </div>
+  </section>
+
+  <section>
+    <p class="section-heading">Education</p>
+
+    <div class="edu-item">
+      <p>Homerton College, University of Cambridge / PGCert Education/Teaching</p>
+      <p>Goldsmiths University of London / MA Arts &amp; Learning</p>
+      <p>Central Saint Martins, UAL / BA (Hons) Fine Art</p>
+    </div>
+  </section>
+
+  <section>
+    <p class="section-heading">Awards &amp; Press</p>
+
+    <div class="edu-item">
+      <p>Deutsche Bank &amp; Common Purpose Photography Award Recipient</p>
+      <p>Exhibition Documentary / Chinese Xinhua News Agency</p>
+      <p>Vogue Italia — Art &amp; Commerce Licence for Photographic Essays (Concluded)</p>
+    </div>
+  </section>
+
+  </div><!-- col-right -->
+
+</main>
+
+</body>
+</html>

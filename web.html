@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Web — Amber Hanson</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --blue: #1a3a5c;
+    --red: #8b1a1a;
+    --white: #ffffff;
+    --black: #0a0a0a;
+  }
+
+  html, body {
+    width: 100%;
+    min-height: 100%;
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Space Mono', monospace;
+  }
+
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 1.5rem 2rem;
+  }
+
+  .nav-name {
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--white);
+    text-decoration: none;
+    opacity: 0.9;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: lowercase;
+  }
+
+  .nav-links a {
+    color: var(--white);
+    text-decoration: none;
+    opacity: 0.6;
+    transition: opacity 0.2s;
+  }
+
+  .nav-links a:hover { opacity: 1; }
+  .nav-links a.active { opacity: 1; color: var(--blue); }
+
+  main {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 7rem 2rem 6rem;
+  }
+
+  .page-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 3rem;
+  }
+
+  .work-list {
+    list-style: none;
+  }
+
+  .work-item {
+    border-top: 1px solid rgba(240, 237, 232, 0.1);
+    padding: 2rem 0;
+  }
+
+  .work-item:last-child {
+    border-bottom: 1px solid rgba(240, 237, 232, 0.1);
+  }
+
+  .work-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .work-title {
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    color: var(--white);
+  }
+
+  .work-year {
+    font-size: 0.65rem;
+    color: var(--red);
+    letter-spacing: 0.08em;
+    white-space: nowrap;
+  }
+
+  .work-medium {
+    font-size: 0.65rem;
+    letter-spacing: 0.08em;
+    text-transform: lowercase;
+    color: rgba(240, 237, 232, 0.4);
+    margin-bottom: 0.75rem;
+  }
+
+  .work-desc {
+    font-size: 0.8rem;
+    line-height: 1.8;
+    color: rgba(240, 237, 232, 0.65);
+    max-width: 560px;
+  }
+
+  .work-link {
+    display: inline-block;
+    margin-top: 1rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    color: var(--blue);
+    text-decoration: none;
+    border-bottom: 1px solid var(--blue);
+    padding-bottom: 1px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+
+  .work-link:hover {
+    color: var(--white);
+    border-color: var(--white);
+  }
+
+  .placeholder-note {
+    font-size: 0.7rem;
+    color: rgba(240, 237, 232, 0.25);
+    font-style: italic;
+    margin-top: 0.5rem;
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-name" href="index.html">Amber Hanson</a>
+  <div class="nav-links">
+    <a href="index.html">work</a>
+    <a href="web.html" class="active">web</a>
+    <a href="info.html">info</a>
+  </div>
+</nav>
+
+<main>
+  <p class="page-label">web &amp; interactive</p>
+
+  <ul class="work-list">
+
+    <li class="work-item">
+      <div class="work-header">
+        <span class="work-title">Panoptic Pollution</span>
+        <span class="work-year">2023</span>
+      </div>
+      <p class="work-medium">web-based, interactive</p>
+      <p class="work-desc">Add description here.</p>
+      <!-- <a class="work-link" href="#" target="_blank">view work →</a> -->
+      <p class="placeholder-note">// add URL when ready</p>
+    </li>
+
+    <li class="work-item">
+      <div class="work-header">
+        <span class="work-title">Presence / Persistence</span>
+        <span class="work-year">2023</span>
+      </div>
+      <p class="work-medium">web-based, duration</p>
+      <p class="work-desc">Add description here.</p>
+      <p class="placeholder-note">// add URL when ready</p>
+    </li>
+
+    <li class="work-item">
+      <div class="work-header">
+        <span class="work-title">Mind Blocking</span>
+        <span class="work-year">2022</span>
+      </div>
+      <p class="work-medium">web-based, generative</p>
+      <p class="work-desc">Add description here.</p>
+      <p class="placeholder-note">// add URL when ready</p>
+    </li>
+
+    <li class="work-item">
+      <div class="work-header">
+        <span class="work-title">Grey Tolerance</span>
+        <span class="work-year">2022</span>
+      </div>
+      <p class="work-medium">web-based, interactive</p>
+      <p class="work-desc">Add description here.</p>
+      <p class="placeholder-note">// add URL when ready</p>
+    </li>
+
+  </ul>
+</main>
+
+</body>
+</html>
