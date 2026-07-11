@@ -31,9 +31,6 @@
 
   .project-text { font-size: 0.8rem; line-height: 1.9; color: rgba(10,10,10,0.7); max-width: 100%; margin-bottom: 2.5rem; }
 
-  .live-link { display: inline-block; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--blue); text-decoration: none; margin-bottom: 3rem; transition: color 0.2s; }
-  .live-link:hover { color: var(--black); }
-
   .image-layout { display: flex; flex-direction: column; gap: 4px; margin-bottom: 3rem; }
   .row-large img { width: 100%; display: block; object-fit: cover; aspect-ratio: 16/9; min-height: 500px; }
   .row-small { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; }
@@ -41,7 +38,11 @@
 
   .section-label { font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(10,10,10,0.35); margin-bottom: 1rem; }
 
-  video { width: 100%; display: block; margin-bottom: 3rem; }
+  .embed-wrap { width: 100%; aspect-ratio: 16 / 9; margin-bottom: 0.75rem; background: var(--black); }
+  .embed-wrap iframe { width: 100%; height: 100%; border: none; display: block; }
+  .embed-note { font-size: 0.65rem; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(10,10,10,0.4); margin-bottom: 3rem; }
+  .embed-note a { color: var(--blue); text-decoration: none; }
+  .embed-note a:hover { color: var(--black); }
 </style>
 </head>
 <body>
@@ -63,8 +64,6 @@
 
   <p class="project-text">Panoptic Pollution is a dual-projection installation. One screen displays a live, unfiltered public CCTV feed of a public space, observational, and silent. Next to it, a second screen visualising the gaze of viewers watching the CCTV in real time: a slowly forming heat map rendered in a coloured spectrum of glyphs. The more sustained or repeated the gaze in a given area, the larger the glyph grows; a collective drawing of attention. Areas that are ignored remain black while areas over-observed become saturated and unstable. When a viewer shifts focus from the CCTV feed to the projection of their own gaze traces, the system introduces minor visual disruption, a break in the line drawing, a feedback loop critiquing digital narcissism and self-surveillance. Over time, the screen reveals zones of obsession, neglect, and distortion.</p>
 
-  <a class="live-link" href="https://concretedilemma.github.io/panoptic-pollution-web/" target="_blank">View Live Version →</a>
-
   <p class="section-label">Installation</p>
   <div class="image-layout">
     <div class="row-large">
@@ -79,10 +78,15 @@
     </div>
   </div>
 
-  <p class="section-label">Video</p>
-  <div class="video-wrap">
-    <video controls src="Dynamic/panoptic-pollution/glyph%201.mov"></video>
+  <p class="section-label">Live Work</p>
+  <div class="embed-wrap">
+    <iframe
+      src="https://concretedilemma.github.io/panoptic-pollution-web/"
+      allow="camera; fullscreen"
+      loading="lazy"
+      title="Panoptic Pollution, live web work"></iframe>
   </div>
+  <p class="embed-note">The work may request camera access for gaze tracking. Allow when prompted, or <a href="https://concretedilemma.github.io/panoptic-pollution-web/" target="_blank" rel="noopener">open in a new tab &rarr;</a></p>
 
 </main>
 </body>
