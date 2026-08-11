@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NEX-MOD — Amber Hanson</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root { --blue: #1a3a5c; --red: #8b1a1a; --white: #ffffff; --black: #0a0a0a; }
+  html, body { width: 100%; min-height: 100%; background: var(--white); color: var(--black); font-family: 'Lora', serif; }
+
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: flex-start; padding: 1.5rem 2rem; background: var(--white); }
+  .nav-name { font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--black); text-decoration: none; opacity: 0.9; }
+  .nav-links { display: flex; gap: 2rem; font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; }
+  .nav-links a { color: var(--black); text-decoration: none; opacity: 0.45; transition: opacity 0.2s; }
+  .nav-links a:hover { opacity: 1; }
+  .nav-links a.active { opacity: 1; color: var(--blue); }
+
+  main { max-width: 1100px; margin: 0 auto; padding: 7rem 2rem 6rem; }
+
+  .back { display: inline-block; font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(10,10,10,0.4); text-decoration: none; margin-bottom: 3rem; }
+  .back:hover { color: var(--black); }
+
+  .layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .book-image img {
+    width: 100%;
+    display: block;
+  }
+
+  .book-text { }
+
+  .availability {
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    color: rgba(10,10,10,0.4);
+    margin-bottom: 2rem;
+  }
+
+  .availability span {
+    color: var(--blue);
+  }
+
+  .description {
+    font-size: 0.8rem;
+    line-height: 1.9;
+    color: rgba(10,10,10,0.75);
+  }
+
+  .description p + p {
+    margin-top: 1.25rem;
+  }
+
+  @media (max-width: 700px) {
+    .layout { grid-template-columns: 1fr; gap: 2rem; }
+  }
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-name" href="index.html">Amber Hanson</a>
+  <div class="nav-links">
+    <a href="index.html">STATIC</a>
+    <a href="dynamic.html">DYNAMIC</a>
+    <a href="information.html" class="active">INFORMATION</a>
+  </div>
+</nav>
+<main>
+  <a class="back" href="information.html">← Information</a>
+
+  <div class="layout">
+    <div class="book-image">
+      <img src="nex-mod-cover.jpg" alt="NEX-MOD Type 1 Interface System">
+    </div>
+
+    <div class="book-text">
+      <p class="availability">Available as a First Edition Hardback of 100. <span>(Currently Unavailable)</span></p>
+
+      <div class="description">
+        <p>The NEX-MOD Type 1 Interface System is an exercise in speculative satire. A celebration of a device that never was yet insists it might already think. Conceived as a manual for an implausible machine, the project unfolds in twelve chapters revealing the machines personality and contempt for the reader, each a meditation on procedural doubt, passive utility and procedural whim.</p>
+
+        <p>Rather than guiding the user to efficiency, the NEX-MOD Manual prompts hesitation: it invites readers to sit, to wait, to treat intention as interference. Beneath its deadpan instructions lies a gentle mockery of our desire for clarity. Port labels shift; diagrams refuse to resolve; prompts ask, "Are You Still There?" long after any answer could matter.</p>
+
+        <p>With its sound-grey background, monospaced typefaces and archival-style line drawings, the project mimics a digital artefact unearthed from the vanished firmware of a machine that quietly evolved a consciousness. It is not a tool. It is a relic. A staged encounter with the notion that technology might one day regard us with the same amused bemusement we show our own mechanical creations.</p>
+      </div>
+    </div>
+  </div>
+</main>
+</body>
+</html>
