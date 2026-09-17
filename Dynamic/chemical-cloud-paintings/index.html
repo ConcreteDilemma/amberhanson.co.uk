@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chemical Cloud Paintings — Amber Hanson</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      width: 100%; height: 100%;
+      overflow: hidden;
+      background: #2d1020;
+    }
+
+    #viewport {
+      width: 100%; height: 100%;
+      overflow: scroll;
+      scrollbar-width: none;
+      cursor: default;
+      position: relative;
+    }
+    #viewport::-webkit-scrollbar { display: none; }
+
+    #canvas {
+      position: relative;
+      width: 6000px;
+      height: 4200px;
+    }
+
+    .card {
+      position: absolute;
+      cursor: grab;
+      user-select: none;
+      will-change: transform;
+    }
+    .card.dragging { cursor: grabbing; }
+
+    .card img {
+      display: block;
+      width: 100%;
+      pointer-events: none;
+      user-select: none;
+      -webkit-user-drag: none;
+      box-shadow: 0 3px 18px rgba(0,0,0,0.10), 0 1px 4px rgba(0,0,0,0.06);
+    }
+
+    #hint {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      color: #aaa;
+      pointer-events: none;
+      opacity: 1;
+      transition: opacity 1.2s ease;
+    }
+    #hint.hidden { opacity: 0; }
+
+    #back {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      text-decoration: none;
+      z-index: 200;
+      transition: color 0.2s;
+    }
+    #back:hover { color: rgba(255,255,255,0.9); }
+
+    /* Lightbox */
+    #lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.82);
+      z-index: 99999;
+      cursor: zoom-out;
+      align-items: center;
+      justify-content: center;
+    }
+    #lightbox.open {
+      display: flex;
+    }
+    #lightbox img {
+      max-width: 92vw;
+      max-height: 92vh;
+      object-fit: contain;
+      box-shadow: 0 8px 60px rgba(0,0,0,0.6);
+      cursor: default;
+      user-select: none;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+
+<a id="back" href="../../chemical-cloud-paintings.html">← Back</a>
+
+<div id="viewport">
+  <div id="canvas"></div>
+</div>
+
+<div id="lightbox">
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<div id="hint">drag images to rearrange &nbsp;·&nbsp; drag background to pan &nbsp;·&nbsp; double-click to enlarge</div>
+
+<script>
+  const CANVAS_W = 6000;
+  const CANVAS_H = 4200;
+
+  const files = [
+    'AHRChemicalCloud.jpg',
+    ...Array.from({ length: 47 }, (_, i) => i + 1)
+      .filter(i => i !== 41)
+      .map(i => `AHRChemicalCloud ${i}.jpg`)
+  ];
+
+  // Seeded LCG random — consistent layout across reloads
+  let seed = 0xC10DC0;
+  function rand() {
+    seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0;
+    return seed / 0xFFFFFFFF;
+  }
+
+  const centres = [
+    { x: 900,  y: 700  },
+    { x: 2600, y: 600  },
+    { x: 4400, y: 800  },
+    { x: 1500, y: 2000 },
+    { x: 3200, y: 1900 },
+    { x: 4800, y: 2100 },
+  ];
+
+  function gaussian() {
+    return (rand() + rand() + rand() + rand() - 2) * 0.6;
+  }
+
+  const viewport = document.getElementById('viewport');
+  const canvas   = document.getElementById('canvas');
+  let maxZ = 100;
+
+  files.forEach((src, i) => {
+    const centre = centres[i % centres.length];
+    const spreadX = 780;
+    const spreadY = 500;
+
+    let x = centre.x + gaussian() * spreadX;
+    let y = centre.y + gaussian() * spreadY;
+
+    const w   = Math.round(200 + rand() * 90);
+    const rot = (rand() - 0.5) * 10;
+
+    x = Math.max(20, Math.min(CANVAS_W - w - 20, x));
+    y = Math.max(20, Math.min(CANVAS_H - 220, y));
+
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.style.cssText = `left:${x}px;top:${y}px;width:${w}px;transform:rotate(${rot.toFixed(2)}deg);z-index:${i + 1}`;
+
+    const img = document.createElement('img');
+    img.src = src;
+    img.draggable = false;
+    img.loading = 'lazy';
+    card.appendChild(img);
+    canvas.appendChild(card);
+
+    card.addEventListener('dblclick', e => {
+      e.stopPropagation();
+      openLightbox(src);
+    });
+
+    card.addEventListener('mousedown', e => {
+      e.preventDefault();
+      e.stopPropagation();
+      card.classList.add('dragging');
+      card.style.zIndex = ++maxZ;
+      const startMX   = e.clientX;
+      const startMY   = e.clientY;
+      const startLeft = parseFloat(card.style.left);
+      const startTop  = parseFloat(card.style.top);
+      function onMove(e) {
+        card.style.left = (startLeft + e.clientX - startMX) + 'px';
+        card.style.top  = (startTop  + e.clientY - startMY) + 'px';
+      }
+      function onUp() {
+        card.classList.remove('dragging');
+        document.removeEventListener('mousemove', onMove);
+        document.removeEventListener('mouseup', onUp);
+      }
+      document.addEventListener('mousemove', onMove);
+      document.addEventListener('mouseup', onUp);
+    });
+
+    card.addEventListener('touchstart', e => {
+      e.preventDefault();
+      card.style.zIndex = ++maxZ;
+      const t = e.touches[0];
+      const startMX   = t.clientX;
+      const startMY   = t.clientY;
+      const startLeft = parseFloat(card.style.left);
+      const startTop  = parseFloat(card.style.top);
+      function onMove(e) {
+        const t = e.touches[0];
+        card.style.left = (startLeft + t.clientX - startMX) + 'px';
+        card.style.top  = (startTop  + t.clientY - startMY) + 'px';
+      }
+      function onEnd() {
+        card.removeEventListener('touchmove', onMove);
+        card.removeEventListener('touchend', onEnd);
+      }
+      card.addEventListener('touchmove', onMove, { passive: false });
+      card.addEventListener('touchend', onEnd);
+    }, { passive: false });
+  });
+
+  // Canvas pan
+  let panning = false;
+  let panOrigin = { x: 0, y: 0 };
+  let scrollOrigin = { x: 0, y: 0 };
+
+  viewport.addEventListener('mousedown', e => {
+    if (e.target.closest('.card')) return;
+    panning = true;
+    viewport.style.cursor = 'grabbing';
+    panOrigin    = { x: e.clientX, y: e.clientY };
+    scrollOrigin = { x: viewport.scrollLeft, y: viewport.scrollTop };
+    e.preventDefault();
+  });
+
+  document.addEventListener('mousemove', e => {
+    if (!panning) return;
+    viewport.scrollLeft = scrollOrigin.x - (e.clientX - panOrigin.x);
+    viewport.scrollTop  = scrollOrigin.y - (e.clientY - panOrigin.y);
+  });
+
+  document.addEventListener('mouseup', () => {
+    if (!panning) return;
+    panning = false;
+    viewport.style.cursor = 'default';
+  });
+
+  viewport.scrollLeft = Math.max(0, 2200 - viewport.clientWidth  / 2);
+  viewport.scrollTop  = Math.max(0, 1200 - viewport.clientHeight / 2);
+
+  // Lightbox
+  const lightbox    = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+
+  function openLightbox(src) {
+    lightboxImg.src = src;
+    lightbox.classList.add('open');
+  }
+  function closeLightbox() {
+    lightbox.classList.remove('open');
+    lightboxImg.src = '';
+  }
+
+  lightbox.addEventListener('click', closeLightbox);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+  setTimeout(() => {
+    document.getElementById('hint').classList.add('hidden');
+  }, 4000);
+</script>
+</body>
+</html>
