@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chemical Cloud Paintings — Amber Hanson</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root { --blue: #1a3a5c; --red: #8b1a1a; --white: #ffffff; --black: #0a0a0a; }
+  html, body { width: 100%; min-height: 100%; background: var(--white); color: var(--black); font-family: 'Lora', serif; }
+
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: flex-start; padding: 1.5rem 2rem; background: var(--white); }
+  .nav-name { font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--black); text-decoration: none; opacity: 0.9; }
+  .nav-links { display: flex; gap: 2rem; font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; }
+  .nav-links a { color: var(--black); text-decoration: none; opacity: 0.45; transition: opacity 0.2s; }
+  .nav-links a:hover { opacity: 1; }
+  .nav-links a.active { opacity: 1; color: var(--blue); }
+
+  main { max-width: 1200px; margin: 0 auto; padding: 6rem 2rem 5rem; }
+
+  .back { display: inline-block; font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(10,10,10,0.4); text-decoration: none; margin-bottom: 2.5rem; }
+  .back:hover { color: var(--black); }
+
+  .project-header { margin-bottom: 2.5rem; }
+  .project-title { font-size: 1.1rem; font-weight: 400; letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 0.5rem; }
+  .project-meta { font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(10,10,10,0.4); }
+
+  .project-text { font-size: 0.8rem; line-height: 1.9; color: rgba(10,10,10,0.7); max-width: 680px; margin-bottom: 3rem; }
+
+  .canvas-link {
+    display: block;
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    text-decoration: none;
+    background: #2d1020;
+  }
+
+  .canvas-link img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.7;
+    transition: opacity 0.4s;
+    display: block;
+  }
+
+  .canvas-link:hover img { opacity: 0.5; }
+
+  .canvas-link .enter-label {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.6);
+    transition: color 0.3s;
+  }
+
+  .canvas-link:hover .enter-label { color: rgba(255,255,255,1); }
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-name" href="index.html">Amber Hanson</a>
+  <div class="nav-links">
+    <a href="index.html">Static</a>
+    <a href="dynamic.html" class="active">Dynamic</a>
+    <a href="information.html">Information</a>
+  </div>
+</nav>
+<main>
+  <a class="back" href="dynamic.html">← Dynamic</a>
+
+  <div class="project-header">
+    <h1 class="project-title">Chemical Cloud Paintings</h1>
+    <p class="project-meta">chemical photography, painting</p>
+  </div>
+
+  <p class="project-text">An ongoing series of chemical paintings made directly on photographic paper without a camera. Light, heat, and chemical developer are applied in layers, producing cloud-like formations that resist any single reading. Each work is unique and unrepeatable — a record of a process rather than a subject. The archive is presented as a dispersed field: images scattered across a shared surface, available to be moved, grouped, or left to drift.</p>
+
+  <a class="canvas-link" href="Dynamic/chemical-cloud-paintings/index.html">
+    <img src="Dynamic/Thumbnails/Chemical Cloud Paintings Thumbnail.jpg" alt="Chemical Cloud Paintings">
+    <div class="enter-label">Enter Archive →</div>
+  </a>
+</main>
+</body>
+</html>
