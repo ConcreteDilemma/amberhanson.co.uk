@@ -26,7 +26,6 @@
     overflow: hidden;
   }
 
-  /* NAV */
   nav {
     position: fixed;
     top: 0;
@@ -37,7 +36,6 @@
     justify-content: space-between;
     align-items: flex-start;
     padding: 1.5rem 2rem;
-    mix-blend-mode: normal;
   }
 
   .nav-name {
@@ -67,51 +65,42 @@
   .nav-links a:hover { opacity: 1; }
   .nav-links a.active { opacity: 1; color: var(--blue); }
 
-  /* PAGE LAYOUT */
-  body {
+  .strip-wrap {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     display: flex;
-    flex-direction: column;
     align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    overflow: hidden;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: none;
+    cursor: grab;
+    padding: 0 2rem;
   }
 
-  /* SLIDESHOW FRAME */
-  .slideshow-wrap {
-    width: 70%;
-    aspect-ratio: 16 / 10;
-    position: relative;
-    border: 1px solid rgba(10, 10, 10, 0.12);
+  .strip-wrap::-webkit-scrollbar { display: none; }
+  .strip-wrap.dragging { cursor: grabbing; }
+
+  .strip-inner {
+    display: flex;
+    gap: 1.25rem;
+    align-items: center;
+    padding: 4rem 0 3rem;
+    flex-shrink: 0;
   }
 
-  .slideshow {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-  }
-
-  .slide {
-    position: absolute;
-    inset: 0;
-    opacity: 0;
+  .strip-inner img {
+    height: 62vh;
+    width: auto;
+    display: block;
+    flex-shrink: 0;
+    user-select: none;
+    -webkit-user-drag: none;
     pointer-events: none;
   }
 
-  .slide.active {
-    opacity: 1;
-    pointer-events: auto;
-  }
-
-  .slide img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    display: block;
-  }
-
-  /* COUNTER */
   .counter {
     position: fixed;
     bottom: 1.75rem;
@@ -123,66 +112,20 @@
     opacity: 0.4;
   }
 
-  /* PAUSE INDICATOR */
-  .pause-indicator {
+  .scroll-hint {
     position: fixed;
     bottom: 1.75rem;
-    left: 2rem;
-    z-index: 100;
+    left: 50%;
+    transform: translateX(-50%);
     font-size: 0.65rem;
     letter-spacing: 0.1em;
-    color: var(--red);
-    opacity: 0;
-    transition: opacity 0.3s;
-  }
-
-  .pause-indicator.visible { opacity: 1; }
-
-  /* PROGRESS BAR — runs along bottom of frame */
-  .progress {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    height: 1px;
-    background: var(--blue);
+    color: var(--black);
+    opacity: 0.3;
+    transition: opacity 1.2s ease;
     z-index: 100;
-    width: 0%;
-    transition: width linear;
   }
 
-  /* Click areas */
-  .click-prev, .click-next {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    z-index: 50;
-    width: 30%;
-    cursor: pointer;
-  }
-
-  .click-prev { left: 0; }
-  .click-next { right: 0; }
-
-  /* Arrow buttons */
-  .arrow {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 60;
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 1rem;
-    color: rgba(10,10,10,0.3);
-    padding: 0.75rem 1rem;
-    line-height: 1;
-    transition: color 0.2s;
-    pointer-events: auto;
-  }
-
-  .arrow:hover { color: var(--black); }
-  .arrow-left { left: 0.25rem; }
-  .arrow-right { right: 0.25rem; }
+  .scroll-hint.hidden { opacity: 0; }
 </style>
 </head>
 <body>
@@ -196,21 +139,14 @@
   </div>
 </nav>
 
-<div class="slideshow-wrap">
-  <div class="slideshow" id="slideshow"></div>
-  <div class="progress" id="progress"></div>
-  <div class="click-prev" id="clickPrev"></div>
-  <div class="click-next" id="clickNext"></div>
-  <button class="arrow arrow-left" id="arrowLeft">&#8592;</button>
-  <button class="arrow arrow-right" id="arrowRight">&#8594;</button>
+<div class="strip-wrap" id="strip">
+  <div class="strip-inner" id="stripInner"></div>
 </div>
 
-<div class="counter" id="counter">01 / 09</div>
-<div class="pause-indicator" id="pauseIndicator">paused</div>
+<div class="counter" id="counter">01 / 13</div>
+<div class="scroll-hint" id="hint">← scroll →</div>
 
 <script>
-  const INTERVAL = 4400;
-
   const images = [
     'Static/893DDB42-164A-431A-A4D8-EFC5BDE7372F.jpg',
     'Static/MindBlock 2.png',
@@ -227,105 +163,64 @@
     'Static/steps.png',
   ];
 
-  let current = 0;
-  let paused = false;
-  let timer = null;
-  let progressTimer = null;
-
-  const slideshow = document.getElementById('slideshow');
+  const strip = document.getElementById('strip');
+  const inner = document.getElementById('stripInner');
   const counter = document.getElementById('counter');
-  const pauseIndicator = document.getElementById('pauseIndicator');
-  const progress = document.getElementById('progress');
+  const hint = document.getElementById('hint');
 
-  // Build slides
   images.forEach((src, i) => {
-    const div = document.createElement('div');
-    div.className = 'slide' + (i === 0 ? ' active' : '');
     const img = document.createElement('img');
     img.src = src;
     img.alt = '';
-    img.loading = i < 3 ? 'eager' : 'lazy';
-    div.appendChild(img);
-    slideshow.appendChild(div);
+    img.loading = i < 4 ? 'eager' : 'lazy';
+    inner.appendChild(img);
   });
 
-  const slides = document.querySelectorAll('.slide');
-
-  function pad(n) { return String(n + 1).padStart(2, '0'); }
-
-  function goTo(n) {
-    slides[current].classList.remove('active');
-    current = (n + images.length) % images.length;
-    slides[current].classList.add('active');
-    counter.textContent = pad(current) + ' / ' + pad(images.length - 1);
-    startProgress();
+  function updateCounter() {
+    const sw = strip.scrollWidth - strip.clientWidth;
+    const pct = sw > 0 ? strip.scrollLeft / sw : 0;
+    const idx = Math.min(Math.round(pct * (images.length - 1)) + 1, images.length);
+    counter.textContent = String(idx).padStart(2, '0') + ' / ' + images.length;
   }
 
-  function next() { goTo(current + 1); }
-  function prev() { goTo(current - 1); }
+  strip.addEventListener('scroll', updateCounter, { passive: true });
 
-  function startProgress() {
-    progress.style.transition = 'none';
-    progress.style.width = '0%';
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        progress.style.transition = `width ${INTERVAL}ms linear`;
-        progress.style.width = '100%';
-      });
-    });
+  // Fade hint after first scroll or 3s
+  let hintGone = false;
+  function hideHint() {
+    if (hintGone) return;
+    hintGone = true;
+    hint.classList.add('hidden');
   }
+  strip.addEventListener('scroll', hideHint, { once: true });
+  setTimeout(hideHint, 3000);
 
-  function startTimer() {
-    clearInterval(timer);
-    timer = setInterval(() => {
-      if (!paused) next();
-    }, INTERVAL);
-  }
+  // Click-drag to scroll
+  let dragging = false;
+  let startX, startScroll;
 
-  function togglePause() {
-    paused = !paused;
-    pauseIndicator.classList.toggle('visible', paused);
-    if (paused) {
-      progress.style.transition = 'none';
-    } else {
-      startProgress();
-    }
-  }
-
-  // Click left/right to navigate
-  document.getElementById('clickPrev').addEventListener('click', () => {
-    prev();
-    if (!paused) startTimer();
+  strip.addEventListener('mousedown', e => {
+    dragging = true;
+    strip.classList.add('dragging');
+    startX = e.clientX;
+    startScroll = strip.scrollLeft;
   });
 
-  document.getElementById('clickNext').addEventListener('click', () => {
-    next();
-    if (!paused) startTimer();
+  document.addEventListener('mousemove', e => {
+    if (!dragging) return;
+    strip.scrollLeft = startScroll - (e.clientX - startX);
   });
 
-  // Arrow buttons
-  document.getElementById('arrowLeft').addEventListener('click', e => {
-    e.stopPropagation();
-    prev();
-    if (!paused) startTimer();
+  document.addEventListener('mouseup', () => {
+    dragging = false;
+    strip.classList.remove('dragging');
   });
 
-  document.getElementById('arrowRight').addEventListener('click', e => {
-    e.stopPropagation();
-    next();
-    if (!paused) startTimer();
-  });
-
-  // Space or click centre to pause
+  // Arrow key navigation
   document.addEventListener('keydown', e => {
-    if (e.code === 'Space') { e.preventDefault(); togglePause(); }
-    if (e.code === 'ArrowRight') { next(); if (!paused) startTimer(); }
-    if (e.code === 'ArrowLeft') { prev(); if (!paused) startTimer(); }
+    if (e.code === 'ArrowRight') strip.scrollBy({ left: 300, behavior: 'smooth' });
+    if (e.code === 'ArrowLeft')  strip.scrollBy({ left: -300, behavior: 'smooth' });
   });
-
-  // Start
-  startProgress();
-  startTimer();
 </script>
 </body>
 </html>
